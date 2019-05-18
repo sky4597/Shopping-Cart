@@ -17,6 +17,7 @@ export class NavBarComponent implements OnInit {
   @ViewChild("divForShow") divElement: ElementRef;
 
   private isOpen: boolean = false;
+  private collapsed: boolean = true;
 
   constructor(private renderer: Renderer2) {}
 
@@ -54,6 +55,11 @@ export class NavBarComponent implements OnInit {
         }
       }, 300);
     }
+  }
+
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 
   checkForClasses() {
