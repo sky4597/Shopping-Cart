@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from "@angular/fire";
+import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,7 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { environment } from '../environments/environment';
-  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
+    NgbDropdownModule,
     AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     AngularFireAuthModule
