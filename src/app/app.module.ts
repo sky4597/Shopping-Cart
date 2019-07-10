@@ -16,6 +16,14 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { environment } from '../environments/environment';
+import { AuthService } from './auth.service';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { UserService } from './user.service';
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,16 +38,19 @@ import { environment } from '../environments/environment';
     LoginComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgbDropdownModule,
     AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, AdminAuthGuard, CategoryService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

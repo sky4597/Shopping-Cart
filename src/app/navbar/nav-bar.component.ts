@@ -1,32 +1,30 @@
-import { Component } from "@angular/core";
-import * as firebase from "firebase";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Component, NgZone, OnInit } from "@angular/core";
+import { AuthService } from "../auth.service";
+import { AppUser } from "../models/app-user";
 
 @Component({
   selector: "nav-bar",
   templateUrl: "./nav-bar.component.html",
   styleUrls: ["./nav-bar.component.css"]
 })
-export class NavBarComponent {
-  private isOpen: boolean = false;
+export class NavBarComponent implements OnInit {
   public collapsed: boolean = true;
+  appUser: AppUser;
 
-  user: firebase.User;
+  isContainedIn = (element: HTMLElement, array?: HTMLElement[]) =>
+    array ? array.some(item => item.contains(element)) : false;
 
-  constructor(private afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(res => (this.user = res));
+  constructor(private auth: AuthService) {
+    auth.appUser$.subscribe(appUser => (this.appUser = appUser));
   }
 
-  toggleState() {
-    this.isOpen = !this.isOpen;
-  }
+  ngOnInit() {}
 
   toggleCollapsed() {
     this.collapsed = !this.collapsed;
   }
 
   logout() {
-    console.log("logged out");
-    this.afAuth.auth.signOut();
+    this.auth.logout();
   }
 }
