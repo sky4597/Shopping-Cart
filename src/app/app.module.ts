@@ -13,6 +13,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { LoginComponent } from './login/login.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { DataTableModule } from 'angular7-data-table';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { environment } from '../environments/environment';
@@ -26,6 +27,7 @@ import { CategoryService } from './category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './product.service';
 import { CustomFormsModule } from 'ng2-validation';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -49,8 +51,10 @@ import { CustomFormsModule } from 'ng2-validation';
     AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     CustomFormsModule,
+    DataTableModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NoopAnimationsModule
   ],
   providers: [AuthService, AuthGuard, AdminAuthGuard, CategoryService, UserService, ProductService],
   bootstrap: [AppComponent]

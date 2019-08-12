@@ -5,6 +5,10 @@ import { ProductService } from 'src/app/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 
+
+
+
+
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -27,7 +31,15 @@ export class ProductFormComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  delete(){
+    if(!confirm('Are you sure you want to delete this product?')) return
+      this.productService.delete(this.id);
+      this.router.navigate(['/admin/products']);
+  }
+
   save(product){
+    product.price = +product.price;
     if(this.id) this.productService.update(this.id,product)
     else this.productService.create(product);
 
