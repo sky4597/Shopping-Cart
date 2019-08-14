@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CategoryService } from 'src/app/category.service';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
@@ -14,22 +14,24 @@ import { take } from 'rxjs/operators';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent  {
   categories$ : Observable<any>;
   product = {};
   id;
+  isNewProd: Boolean = true;
 
   constructor(categoryService: CategoryService, private productService: ProductService, private router: Router, private route: ActivatedRoute) {
     this.categories$ = categoryService.getCategories();
 
     this.id = this.route.snapshot.paramMap.get('id');
-    if(this.id) this.productService.get(this.id).valueChanges().pipe(
-      take(1)
-    ).subscribe(p=>this.product=p);
+    if(this.id)
+    {
+      this.productService.get(this.id).valueChanges().pipe(take(1)).subscribe(p=>this.product=p);
+      this.isNewProd = false;
+    }
+
    }
 
-  ngOnInit() {
-  }
 
 
   delete(){

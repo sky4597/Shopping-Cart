@@ -30,6 +30,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AngularFireAuthModule,
     NoopAnimationsModule
   ],
-  providers: [AuthService, AuthGuard, AdminAuthGuard, CategoryService, UserService, ProductService],
+  providers: [AuthService, AuthGuard, AdminAuthGuard, CategoryService, UserService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
