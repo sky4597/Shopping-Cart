@@ -61,7 +61,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     AngularFireAuthModule,
     NoopAnimationsModule
   ],
-  providers: [AuthService, AuthGuard, AdminAuthGuard, CategoryService, UserService, ProductService, ShoppingCartService],
+  providers: [AuthService, AuthGuard, AdminAuthGuard ,CategoryService, UserService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

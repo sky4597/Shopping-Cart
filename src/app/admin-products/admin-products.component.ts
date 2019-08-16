@@ -23,7 +23,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       this.products = products;
       this.initializeTable(products, {limit:10});
     });
-    this.productService.getAll().subscribe(p => console.log(p));
   }
 
   ngOnInit() {}
