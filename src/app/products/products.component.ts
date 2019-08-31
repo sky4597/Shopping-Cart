@@ -46,7 +46,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         };
       for (let productId in cart.items)
         shoppingCartItemCount += cart.items[productId].quantity;
-        this.cartService.broadcast$.next(shoppingCartItemCount);
+        this.cartService.push(shoppingCartItemCount);
       });
 
 

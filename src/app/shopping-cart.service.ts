@@ -8,7 +8,7 @@ import { ShoppingCart } from './models/shopping-cart';
 @Injectable()
 export class ShoppingCartService {
   private cartId;
-  public broadcast$: Subject<number> = new Subject();
+  private broadcast$: Subject<number> = new Subject();
   public obs$ : Observable<any>;
 
   constructor(private db: AngularFireDatabase) { }
@@ -19,6 +19,16 @@ export class ShoppingCartService {
       dateCreated: new Date().getTime()
     })
   }
+
+  public getTotalItemCount():Observable<number>{
+    return this.broadcast$.asObservable()
+  }
+
+  public push(currCount: number): void{
+    this.broadcast$.next(currCount);
+  }
+
+
 
   async getCart() {
     let res = await this.getOrCreateCartId();

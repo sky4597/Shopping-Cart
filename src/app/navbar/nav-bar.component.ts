@@ -24,9 +24,7 @@ export class NavBarComponent implements OnInit {
 
   async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => (this.appUser = appUser));
-    this.cartService.broadcast$.subscribe(x => {
-      this.shoppingCartItemCount = x;
-    })
+    this.cartService.getTotalItemCount().subscribe(count=>this.shoppingCartItemCount=count);
   }
 
   toggleCollapsed() {
