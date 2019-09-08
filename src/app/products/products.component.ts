@@ -12,7 +12,7 @@ import { Subscription, Observable } from 'rxjs';
   templateUrl: "./products.component.html",
   styleUrls: ["./products.component.css"]
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
   products : Product[] = [];
   filteredProducts: Product[] = [];
   category: string;
@@ -36,24 +36,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     })
      }
 
-     async ngOnInit(){
-      this.subscription  =(await this.cartService.getCart()).valueChanges().subscribe((cart: ShoppingCart)=>{
-        this.cart = cart;
-        let shoppingCartItemCount = 0;
-        if(!cart || !cart.items){
-          shoppingCartItemCount =0;
-          return;
-        };
-      for (let productId in cart.items)
-        shoppingCartItemCount += cart.items[productId].quantity;
-        this.cartService.push(shoppingCartItemCount);
-      });
+      ngOnInit(){
+
+         this.cartService.cart.subscribe(cart=>this.cart = cart);
+
 
 
      }
 
 
-     ngOnDestroy(){
-      this.subscription.unsubscribe();
-     }
 }
