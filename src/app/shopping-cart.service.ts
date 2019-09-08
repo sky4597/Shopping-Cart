@@ -2,15 +2,15 @@ import { Product } from './models/product';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators'
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ShoppingCart } from './models/shopping-cart';
 
 @Injectable()
 export class ShoppingCartService {
   private cartId;
-  private broadcast$: Subject<number> = new Subject();
+  private broadcast$: BehaviorSubject<number> = new BehaviorSubject(0);
   public obs$ : Observable<any>;
-  public cart: Subject<ShoppingCart> = new Subject<ShoppingCart>();
+  public cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart([]));
 
   constructor(private db: AngularFireDatabase) { }
 

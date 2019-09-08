@@ -11,11 +11,15 @@ import { map } from 'rxjs/operators';
 })
 export class ShoppingCartComponent implements OnInit {
   cart$;
-  cartCount;
+  cartCount: number = 0;
 
   constructor(private cartService: ShoppingCartService) { }
 
-  async ngOnInit() {
+   ngOnInit() {
+    this.cartService.getTotalItemCount().subscribe(count=>{
+      this.cartCount = count;
+      console.log(count);
+    });
   }
 
 }
