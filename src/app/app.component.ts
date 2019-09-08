@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       .pipe(
         map(x=>{
           if (!x['items'])
-          return new ShoppingCart([]);
+          return new ShoppingCart({});
           else
           return new ShoppingCart(x['items'])
         })

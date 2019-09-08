@@ -10,7 +10,7 @@ export class ShoppingCartService {
   private cartId;
   private broadcast$: BehaviorSubject<number> = new BehaviorSubject(0);
   public obs$ : Observable<any>;
-  public cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart([]));
+  public cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart({}));
 
   constructor(private db: AngularFireDatabase) { }
 

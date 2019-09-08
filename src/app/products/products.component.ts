@@ -38,7 +38,10 @@ export class ProductsComponent implements OnInit {
 
       ngOnInit(){
 
-         this.cartService.cart.subscribe(cart=>this.cart = cart);
+         this.cartService.cart.subscribe(cart=>{
+           console.log("%c cart:","font-weight:bold,color:red");
+           this.cart= cart;
+         });
 
 
 
