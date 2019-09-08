@@ -10,12 +10,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  cart$;
+  cart: ShoppingCart;
   cartCount: number = 0;
 
   constructor(private cartService: ShoppingCartService) { }
 
    ngOnInit() {
+     this.cartService.cart.subscribe(x=>{
+      this.cart = x;
+      console.log(x);
+     });
     this.cartService.getTotalItemCount().subscribe(count=>{
       this.cartCount = count;
       console.log(count);
