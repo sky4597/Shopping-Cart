@@ -1,4 +1,6 @@
+import { ProductCardComponent } from './../product-card/product-card.component';
 import { ShoppingCartItem } from './shopping-cart-item';
+import { Product } from './product';
 export class ShoppingCart{
   items: ShoppingCartItem[] = [];
   /**
@@ -9,6 +11,13 @@ export class ShoppingCart{
       let item = itemsMap[productId]
       this.items.push(new ShoppingCartItem(item.product, item.quantity))
     }
+
+  }
+
+  getQuantity(product: Product) {
+    // if(!this.shoppingCart || !this.shoppingCart.items) return 0;
+    let item = this.itemsMap[product.key];
+    return item ? item.quantity : 0;
 
   }
 
