@@ -13,39 +13,41 @@ import { Subscription, Observable } from 'rxjs';
   styleUrls: ["./products.component.css"]
 })
 export class ProductsComponent implements OnInit {
-  products : Product[] = [];
+  products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string;
-  cart: any;
-  subscription : Subscription;
+  cart$: any;
+  subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    productService: ProductService,
-    private cartService: ShoppingCartService) {
+    private productService: ProductService,
+    private cartService: ShoppingCartService) { }
 
-    productService.getAll().pipe(
-      switchMap(products=>{
+  ngOnInit() {
+    this.cart$ = this.cartService.getPublishedCart();
+    this.populateProducts();
+  }
+
+  private populateProducts() {
+    this.productService.getAll()
+    .pipe(
+      switchMap(products => {
         this.products = products
-        return route.queryParamMap;
+        return this.route.queryParamMap;
       })
-    ).subscribe(params=>{
-        this.category = params.get('category');
-        this.filteredProducts = (this.category) ?
-        this.products.filter(p=>p.category === this.category) : this.products
+    ).subscribe(params => {
+      this.category = params.get('category');
+      this.applyFilter();
+
     })
-     }
-
-      ngOnInit(){
-
-         this.cartService.cart.subscribe(cart=>{
-           console.log("%c cart:","font-weight:bold,color:red");
-           this.cart= cart;
-         });
+  }
 
 
-
-     }
+  private applyFilter() {
+    this.filteredProducts = (this.category) ?
+      this.products.filter(p => p.category === this.category) : this.products
+  }
 
 
 }

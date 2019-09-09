@@ -31,10 +31,10 @@ export class AppComponent implements OnInit {
           return new ShoppingCart(x['items'])
         })
       ).subscribe((cart: ShoppingCart)=>{
-        this.cartService.cart.next(cart);
+        this.cartService.publishCart(cart);
         let shoppingCartItemCount = 0;
         shoppingCartItemCount = cart.totalItemsCount;
-        this.cartService.push(shoppingCartItemCount);
+        this.cartService.pushCount(shoppingCartItemCount);
       });
 
   }

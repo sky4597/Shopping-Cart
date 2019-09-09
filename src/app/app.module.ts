@@ -32,6 +32,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './order.service';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShoppingCartSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     AngularFireAuthModule,
     NoopAnimationsModule
   ],
-  providers: [AuthService, AuthGuard, AdminAuthGuard ,CategoryService, UserService, ProductService, ShoppingCartService],
+  providers: [AuthService, OrderService ,AuthGuard, AdminAuthGuard ,CategoryService, UserService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

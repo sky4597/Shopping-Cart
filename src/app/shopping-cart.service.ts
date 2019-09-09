@@ -9,27 +9,26 @@ import { ShoppingCart } from './models/shopping-cart';
 export class ShoppingCartService {
   private cartId;
   private broadcast$: BehaviorSubject<number> = new BehaviorSubject(0);
-  public obs$ : Observable<any>;
-  public cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart({}));
+  private cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart({}));
 
   constructor(private db: AngularFireDatabase) { }
 
 
-  private create() {
-    return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
-    })
+  public publishCart(cart: ShoppingCart){
+    this.cart.next(cart);
+  }
+
+  public getPublishedCart(){
+    return this.cart.asObservable();
   }
 
   public getTotalItemCount():Observable<number>{
     return this.broadcast$.asObservable()
   }
 
-  public push(currCount: number): void{
+  public pushCount(currCount: number): void{
     this.broadcast$.next(currCount);
   }
-
-
 
   async getCart() {
     let res = await this.getOrCreateCartId();
@@ -38,20 +37,6 @@ export class ShoppingCartService {
 
 
 
-  private async getOrCreateCartId() {
-    let cartId = localStorage.getItem('cartId');
-    if (cartId) return cartId;
-
-    let result = await this.create();
-    localStorage.setItem('cartId', result.key);
-    return result.key;
-
-  }
-
-
-  private getItem(cartId: string, productId: string) {
-    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
-  }
 
   async addToCart(product: Product) {
     this.updateItemQuantity(product, 1);
@@ -66,6 +51,30 @@ export class ShoppingCartService {
     let itemRef = this.db.list('/shopping-carts/' + cartId + '/items')
     itemRef.remove();
   }
+
+  private create() {
+    debugger;
+    let obj = {
+      dateCreated: new Date().getTime(),
+      info: window.navigator.userAgent
+    }
+    return this.db.list('/shopping-carts').push(obj);
+  }
+
+  private async getOrCreateCartId() {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) return cartId;
+
+    let result = await this.create();
+    localStorage.setItem('cartId', result.key);
+
+    return result.key;
+  }
+
+  private getItem(cartId: string, productId: string) {
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+  }
+
 
   private async updateItemQuantity(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
