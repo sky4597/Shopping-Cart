@@ -22,4 +22,11 @@ export class Order{
       }
     })
   }
+
+
+  get cartPrice(){
+    let sum = 0;
+    this.items.map(x=>sum+=x.totalprice);
+    return sum;
+  }
 }
