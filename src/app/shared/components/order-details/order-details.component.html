@@ -1,0 +1,64 @@
+<h1>Order Details</h1>
+<div class="row">
+<div class="col-6">
+    <div class="card text-center">
+        <div class="card-header">
+          Shipping Details
+        </div>
+        <div class="card-body" *ngIf="order">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="float-left"> Name:</div>
+                <div class="float-right">
+                  {{ shippingDetails['name'] }}
+                </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="float-left">Address Line 1:</div>
+                 <div class="float-right">
+                   {{ shippingDetails['addressLine1'] }}
+                 </div>
+                 </li>
+                 <li class="list-group-item">
+                    <div class="float-left">Address Line 2:</div>
+                 <div class="float-right">
+                   {{ shippingDetails['addressLine2'] }}
+                 </div>
+                 </li>
+                 <li class="list-group-item">
+                    <div class="float-left">City:</div>
+                 <div class="float-right">
+                   {{ shippingDetails['city'] }}
+                 </div>
+                 </li>
+              </ul>
+        </div>
+      </div>
+
+</div>
+<div class="col-6">
+    <div class="card text-center">
+        <div class="card-header">
+          Order Summary
+        </div>
+        <div class="card-body" *ngIf="order">
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let item of order.items" class="list-group-item">
+                {{ item.quantity }} x {{ item.product.title }}
+                <div class="float-right">
+                  {{ item.totalPrice | currency:'USD' }}
+                </div>
+                </li>
+                <li class="list-group-item font-weight-bold">
+                  Total
+                  <div class="float-right">
+                    {{ cartTotal| currency:'USD' }}
+                  </div>
+                </li>
+              </ul>
+        </div>
+      </div>
+
+</div>
+
+</div>

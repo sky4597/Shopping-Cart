@@ -1,6 +1,6 @@
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { ShoppingCartService } from './shopping-cart.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Injectable()
 export class OrderService {

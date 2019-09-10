@@ -1,4 +1,4 @@
-import { ProductCardComponent } from './../product-card/product-card.component';
+import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
 import { ShoppingCartItem } from './shopping-cart-item';
 import { Product } from './product';
 export class ShoppingCart{

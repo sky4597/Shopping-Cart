@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CategoryService } from 'src/app/category.service';
+import { CategoryService } from 'shared/services/category.service';
 import { Observable } from 'rxjs';
-import { ProductService } from 'src/app/product.service';
+import { ProductService } from 'shared/services/product.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 

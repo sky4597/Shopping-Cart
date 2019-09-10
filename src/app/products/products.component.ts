@@ -1,9 +1,9 @@
-import { ShoppingCart } from './../models/shopping-cart';
-import { ShoppingCartService } from './../shopping-cart.service';
+import { ShoppingCart } from 'shared/models/shopping-cart';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { Component, OnInit, OnDestroy, AfterViewChecked, AfterViewInit } from "@angular/core";
-import { ProductService } from "../product.service";
+import { ProductService } from "shared/services/product.service";
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product';
+import { Product } from 'shared/models/product';
 import { switchMap, filter } from 'rxjs/operators';
 import { Subscription, Observable } from 'rxjs';
 
