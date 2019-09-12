@@ -1,9 +1,11 @@
-.card-footer{
-  padding:0;
+.card-footer {
+  padding: 0;
+  background: #fff;
 }
 
-.card-footer button{
+.card-footer button {
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .card{
@@ -16,4 +18,8 @@
 
 .sec-page{
   width:16rem;
+}
+
+.card-img-top {
+  height: 200px;
 }
