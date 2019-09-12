@@ -1,8 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { DataTableModule } from 'angular7-data-table';
 import { OrderDetailsComponent } from 'shared/components/order-details/order-details.component';
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { SharedModule } from 'shared/shared.module';
@@ -29,10 +26,7 @@ const routes: Routes = [
     AdminOrdersComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
     SharedModule,
-    DataTableModule,
     RouterModule.forChild(routes)
   ],
   providers:[
