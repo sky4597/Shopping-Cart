@@ -45,4 +45,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .form-control:focus {
   border-color: $primary-color;
+  box-shadow: 0 0 0 0.2rem rgba(177, 197, 34, 0.4)
 }
+  
