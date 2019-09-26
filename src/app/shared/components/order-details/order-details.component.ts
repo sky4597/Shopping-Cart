@@ -11,6 +11,7 @@ import { ShoppingCart } from 'shared/models/shopping-cart';
 })
 export class OrderDetailsComponent implements OnInit {
   userId;
+  date;
   order: Order;
   cart: ShoppingCart;
   cartTotal: number = 0;
@@ -22,8 +23,9 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
-    this.orderService.getOrdersByUser(this.userId).valueChanges().subscribe((x) =>{
-      this.order = x[0] as Order;
+    this.date = +this.route.snapshot.paramMap.get('date');
+    this.orderService.getOrdersByUser(this.userId).valueChanges().subscribe((x:Order[]) =>{
+      this.order = x.filter(y=>y['datePlaced']===this.date)[0]
       console.log(this.order);
       let sum = 0;
       this.order.items.forEach(x=>{sum+=x.totalPrice});
