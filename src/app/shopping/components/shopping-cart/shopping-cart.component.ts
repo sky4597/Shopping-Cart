@@ -18,11 +18,9 @@ export class ShoppingCartComponent implements OnInit {
    ngOnInit() {
      this.cartService.getPublishedCart().subscribe(x=>{
       this.cart = x;
-      console.log(x);
      });
     this.cartService.getTotalItemCount().subscribe(count=>{
       this.cartCount = count;
-      console.log(count);
     });
   }
 
