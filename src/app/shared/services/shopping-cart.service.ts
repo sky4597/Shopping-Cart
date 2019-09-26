@@ -53,7 +53,6 @@ export class ShoppingCartService {
   }
 
   private create() {
-    debugger;
     let obj = {
       dateCreated: new Date().getTime(),
       info: window.navigator.userAgent
