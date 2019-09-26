@@ -13,7 +13,7 @@
       <td>{{ order.datePlaced | date}}</td>
       <td>
         <a
-         [routerLink]="['/admin/orders/', order.userId]"
+         [routerLink]="['/admin/orders/', order.userId, order.datePlaced]"
         >View</a>
       </td>
     </tr>
